@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Reservations</title>
+		<style>
+			body { background-color: #99ffcc; }
+			fieldset { width: 600px; }
+			.sided { width: auto; float: left; }
+			.last { margin-top: 90px; }
+		</style>
+		<script type="text/javascript">
+			function CheckForNumericInput(fieldValue)
+			{
+				if(isNaN(fieldValue))
+				{
+					window.alert("Input error. You must enter a numeric value for phone, number of people, number of rooms, and number of vehicles fields.");
+					return  false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+        	function ValidateForm() 
+			{
+            if (document.forms[0].name.value == "")
+				{
+                	window.alert("You must enter your name.");
+                	return false;
+            	}
+			else if (document.forms[0].email.value == "")
+				{
+                	window.alert("You must enter your email address.");
+                	return false;
+            	}
+			else if (document.forms[0].phone.value == "")
+				{
+                	window.alert("You must enter your telephone number.");
+                	return false;
+            	}
+			else if (document.forms[0].people.value == "")
+				{
+                	window.alert("You must enter number of people.");
+                	return false;
+            	}
+			else if (document.forms[0].rooms.value == "")
+				{
+                	window.alert("You must enter number of rooms.");
+                	return false;
+            	}
+			var bedSizeSelected = false;
+            	for (var i = 0; i < 5; i++)
+				{
+                	if (document.forms[0].beds[i].checked == true)
+					{
+                    	bedSizeSelected = true;
+                    	break;
+                	}
+            	}
+			if (bedSizeSelected == false) 
+				{
+                	window.alert("You must select at least one bed size.");
+                	return false;
+            	}
+            if (document.forms[0].checkinmonth.selectedIndex == "")
+				{
+             		window.alert("You must choose your check in month.");
+             		return false;
+				}
+			if (document.forms[0].checkinday.selectedIndex == "")
+				{
+             		window.alert("You must choose your check in day.");
+             		return false;
+				}
+			if (document.forms[0].checkinyear.selectedIndex == "")
+				{
+             		window.alert("You must choose your check in year.");
+             		return false;
+				}
+			if (document.forms[0].checkoutmonth.selectedIndex == "")
+				{
+             		window.alert("You must choose your check out month.");
+             		return false;
+				}
+			if (document.forms[0].checkoutday.selectedIndex == "")
+				{
+             		window.alert("You must choose your check out day.");
+             		return false;
+				}
+			if (document.forms[0].checkoutyear.selectedIndex == "")
+				{
+             		window.alert("You must choose your check out year.");
+             		return false;
+				}
+			var parkingSelected = false;
+            	for (var p = 0; p < 2; p++)
+				{
+                	if (document.forms[0].parking[p].checked == true)
+					{
+                    	parkingSelected = true;
+                    	break;
+                	}
+            	}
+			if (parkingSelected == false) 
+				{
+                	window.alert("You must choose do you need parkinkg or not.");
+                	return false;
+            	}
+			else if (document.forms[0].parking.value == "Yes" && document.forms[0].vehicles.value == "")
+				{
+                	window.alert("You must enter number of vehicles.");
+                	return false;
+            	}
+        	}
+			
+        	function ConfirmReset() 
+			{
+            	var resetMessage = window.confirm("Are you sure you want to reset this form?");
+            	if (resetMessage == true)
+                return true;
+	            return false;
+        	}
+		</script>
+	</head>
+	<body>
+        
+        <img src="lifezest-logo.jpg" alt="logo" />
+		<h1>Reservations</h1>
+		<form action="ReservationFeedback.html" id="frmSignUp" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return ValidateForm();" onreset="return ConfirmReset();">
+			<fieldset>
+			<legend><h4>Contact Information</h4></legend>
+			Name: <input type="text" name="name" size="40" /><br /><br />
+			Email: <input type="text" name="email" size="40" /><br /><br />
+			Phone: <input type="text" name="phone" size="15" onblur ="CheckForNumericInput(this.value)"; />
+			</fieldset>
+
+			<h3>Reservation Information</h3>
+			<fieldset>
+			<legend><h4>Party Size</h4></legend>
+			Number of people of your party: <input type="text" name="people" size="5" onblur ="CheckForNumericInput(this.value)"; />&nbsp;&nbsp;&nbsp;
+			Number of rooms required: <input type="text" name="rooms" size="5" onblur ="CheckForNumericInput(this.value)"; />
+			</fieldset><br />
+
+			<fieldset>
+			<legend><h4>Bed Preference</h4></legend>
+			<input type="checkbox" name="beds" value="King bed">King bed
+			<input type="checkbox" name="beds" value="Queen bed">Queen bed
+			<input type="checkbox" name="beds" value="Double queen bed">Double queen bed
+			<input type="checkbox" name="beds" value="Twin bed">Twin bed
+			<input type="checkbox" name="beds" value="Other">Other
+			</fieldset><br />
+
+			<fieldset class="sided">
+			<legend><h4>Check in date</h4></legend>
+			<select name="checkinmonth">
+  				<option value="default-month">Month</option>
+  				<option value="january">January</option>
+  				<option value="fabruary">February</option>
+  				<option value="march">March</option>
+				<option value="april">April</option>
+				<option value="may">May</option>
+				<option value="june">June</option>
+				<option value="july">July</option>
+				<option value="august">August</option>
+				<option value="september">September</option>
+				<option value="october">October</option>
+				<option value="november">November</option>
+				<option value="december">December</option>
+			</select>
+			<select name="checkinday">
+  				<option value="default-day">Day</option>
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+  				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+  				<option value="14">14</option>
+  				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+  				<option value="26">26</option>
+  				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>
+			<select name="checkinyear">
+  				<option value="default-year">Year</option>
+  				<option value="2016">2016</option>
+  				<option value="2017">2017</option>
+  				<option value="2018">2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+			</select>
+			</fieldset>
+
+			<fieldset class="sided">
+			<legend><h4>Check out date</h4></legend>
+			<select name="checkoutmonth">
+  				<option value="default-month">Month</option>
+  				<option value="january">January</option>
+  				<option value="fabruary">February</option>
+  				<option value="march">March</option>
+				<option value="april">April</option>
+				<option value="may">May</option>
+				<option value="june">June</option>
+				<option value="july">July</option>
+				<option value="august">August</option>
+				<option value="september">September</option>
+				<option value="october">October</option>
+				<option value="november">November</option>
+				<option value="december">December</option>
+			</select>
+			<select name="checkoutday">
+  				<option value="default-day">Day</option>
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+  				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+  				<option value="14">14</option>
+  				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+  				<option value="26">26</option>
+  				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>
+			<select name="checkoutyear">
+  				<option value="default-year">Year</option>
+  				<option value="2016">2016</option>
+  				<option value="2017">2017</option>
+  				<option value="2018">2018</option>
+				<option value="2019">2019</option>
+				<option value="2020">2020</option>
+			</select>
+			</fieldset>
+			
+			<fieldset class="last">
+			<legend><h4>Parking</h4></legend>
+			Do you need parking?
+			<input type="radio" name="parking" value="Yes" />Yes.
+			<input type="radio" name="parking" value="No" />No.&nbsp;&nbsp;&nbsp;
+			If Yes, for how many vehicles: <input type="text" name="vehicles" size="5" onblur ="CheckForNumericInput(this.value)"; />
+			</fieldset><br />
+			
+			<button type="submit" value="Make a Reservation">Make a Reservation</button>
+			<button type="reset" value="Reset">Reset</button>
+		</form>
+	</body>
+</html>
